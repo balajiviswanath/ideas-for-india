@@ -1,0 +1,11 @@
+<h1>User profile of <%= @user.name %></h1>
+
+<%= image_tag(@user.avatar.url) %>
+<%= @user.bio %>
+
+<h2>Ideas working on</h2>
+<% @ideas.each do |idea| %>
+    <h3><%= link_to idea.title, controller: "ideas", action: "show", id: idea.id %></h3>
+   <%= raw(youtube_embed( idea.video_url,400,300)) %> 
+    <br>
+<% end %>

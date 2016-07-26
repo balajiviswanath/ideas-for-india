@@ -1,0 +1,7 @@
+<h1> Ideas in <%= @category.name %></h1>
+
+<% @ideas.each do |idea| %>
+    <h3><%= link_to idea.title, controller: "ideas", action: "show", id: idea.id %></h3>
+   <%= raw(youtube_embed( idea.video_url,400,300)) %> 
+    <br>
+<% end %>

@@ -1,0 +1,11 @@
+<span id="notice"><%= notice %></span>
+
+<h1>Browse through India's best Ideas</h1>
+<% @ideas.each do |idea| %>
+    <h3><%= link_to idea.title, controller: "ideas", action: "show", id: idea.id %></h3>
+    <div id="test">
+        Test 233
+    </div>
+   <%= raw(youtube_embed( idea.video_url,400,300)) %> 
+    <br>
+<% end %>
