@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Invento: Ideas for India</title>
+    <title><%= yield(:title) %>: Invento: Ideas for India</title>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
-  <body>
+  <body class="rural-idea-background" style="height:100%">
     <%= render 'shared/navbar' %>
     <% unless notice.blank? %>
-      <div class="alert alert-info alert-dismissable alert-fixed">
+      <div class="alert alert-danger alert-dismissable alert-fixed">
         <%= notice %>
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
       </div>
@@ -22,8 +22,11 @@
       </div>
     <% end %>
     <div class="container">
-      Test
-      <%= yield %>
+       <div class="row">
+        <div class="col-lg-12 col-lg-offset-0 well" style="max-height:80vh; overflow-y:scroll;">
+          <%= yield %>
+        </div>
+      </div>
     </div>
   </body>
 </html>

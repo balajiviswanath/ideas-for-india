@@ -1,7 +1,18 @@
+<% title "Ideas in "+@category.name %>
 <h1> Ideas in <%= @category.name %></h1>
 
-<% @ideas.each do |idea| %>
-    <h3><%= link_to idea.title, controller: "ideas", action: "show", id: idea.id %></h3>
-   <%= raw(youtube_embed( idea.video_url,400,300)) %> 
-    <br>
+Select specific categories to filter:
+    <%= link_to "All", ideas_path, class: "btn btn-primary" %>
+  <% @categories.each do |category| %>
+     <%= link_to category.name, controller: "categories", action: "show", id: category, class: "btn btn-primary" %>
+  <% end %>
+<% @ideas.each_slice(3) do |ideas| %>
+  <div class="row">
+    <% ideas.each do |idea| %>
+      <div class="col-md-4">
+         <h3><%= link_to idea.title, controller: "ideas", action: "show", id: idea.id %></h3> 
+         <%= raw(youtube_embed( idea.video_url,350,200)) %> 
+      </div>
+    <% end %>
+  </div>
 <% end %>

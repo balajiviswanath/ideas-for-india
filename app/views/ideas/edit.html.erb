@@ -1,6 +1,12 @@
-<h1>Editing Idea</h1>
+<% title "Editing "+@idea.title %>
+<% if current_user.id == @idea.project_owner_id %>
+    <h1>Update your Idea</h1>
+    <%= render 'ideagenerateform' %>
+<% else %>
+    <h2>Are you trying to edit an idea you don't manage? That's sneaky ;-)</h2>
+<% end %>
 
-<%= render 'ideagenerateform' %>
+
 
 <%= link_to 'Show', @idea %> |
 <%= link_to 'Back', ideas_path %>

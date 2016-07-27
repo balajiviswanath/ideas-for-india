@@ -7,4 +7,5 @@ class Idea < ActiveRecord::Base
   has_many :posts
   
   validates_format_of :video_url, :with => /\A^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$\z/
+  validates :title, :description, :video_url, :presence => true
 end

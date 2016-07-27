@@ -7,6 +7,22 @@ body {
   font-family: 'Noto Sans', sans-serif;
 }
 
+.rural-background{
+  background: url('rural-india.jpeg') no-repeat center center;
+  -webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: 100%;
+}
+
+.rural-idea-background{
+  background: url('rural-india2.jpeg') no-repeat center center;
+  -webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: 100%;
+}
+
 h1,
 h2,
 h3,

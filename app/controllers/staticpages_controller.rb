@@ -2,6 +2,9 @@ class StaticpagesController < ApplicationController
   def about
   end
 
-  def contact-us
+  def contactus
+  end
+  
+  def landing
   end
 end

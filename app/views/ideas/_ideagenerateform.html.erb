@@ -13,20 +13,21 @@
 
   <div class="field">
     <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: 'form-control', placeholder: 'provide an interesting name' %>
   </div>
   <div class="field">
     <%= f.label :description %><br>
-    <%= f.text_area :description %>
+    <%= f.text_area :description, class: 'form-control', placeholder: 'what have you built or building?' %>
   </div>
   <div class="field">
     <%= f.label :video_url %><br>
-    <%= f.text_field :video_url %>
+    <%= f.text_field :video_url, class: 'form-control', placeholder: 'upload a 60 sec video of what you have built or planning to build and paste the youtube url here' %>
   </div>
   <div>
-    <%= f.collection_select(:category_id,Category.all,:id, :name, {prompt: "Choose your category"}) %>
+    <%=  f.collection_select(:category_id,Category.all,:id, :name, {prompt: "Choose your category"}) %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <br>
+   <div class="actions">
+    <%= f.submit "Here is my cool idea", class: 'btn big btn-success' %>
   </div>
 <% end %>

@@ -1,37 +1,37 @@
-<h2>New user sign up</h2>
-
+<% title "Sign up" %>
+<h3>Let's start changing India</h3> <br>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
+    <%= f.text_field :name, autofocus: true, class: 'form-control', placeholder: 'Elon Musk' %>
   </div>
   
-  <div class="field">
+  <div class="form-group">
     <%= f.label :about %><br />
-    <%= f.text_area :about, autofocus: true %>
+    <%= f.text_area :about, class: 'form-control', placeholder: 'Wannabe Tesla' %>
   </div>
   
-  <div class="field">
+  <div class="form-group">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email, class: 'form-control',placeholder: 'email@example.com' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'dont keep something you use for bank accounts' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: 'now redo the homework' %>
   </div>
   
-    <div class="field">
+    <div class="form-group">
     <%= f.label :avatar do %>
       <%= f.file_field :avatar %>
       <%= f.hidden_field :avatar_cache %>
@@ -39,8 +39,9 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up", class: 'btn big btn-success' %>
   </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+

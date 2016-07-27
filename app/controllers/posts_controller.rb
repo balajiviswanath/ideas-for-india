@@ -6,12 +6,18 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
+  def new
+    @post = Post.new
+  end
+  
   def show
     @comments = @post.comments.all
   end
 
   def create
     @post = current_user.posts.new(post_params)
+   # puts "Trying to create an object"
+  #  puts @post.inspect
     if @post.save
       redirect_to :back
     else
@@ -41,6 +47,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:content, :attachment)
+    params.require(:post).permit(:content,:idea_id)
+    #params.require(:content).permit(:post)
   end
 end

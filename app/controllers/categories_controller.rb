@@ -11,6 +11,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
+    @categories = Category.all
     @ideas = Idea.where(category_id: @category.id).order("created_at desc")
   end
 

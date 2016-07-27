@@ -1,22 +1,19 @@
 class IdeasController < ApplicationController
   before_action :authenticate_user!, except: [:index,:show]
-  before_action :set_idea, only: [:show, :edit, :update, :destroy, :upvote]
+  before_action :set_idea, only: [:show, :edit, :update, :destroy, :upvote, :removevote]
 
-  # GET /ideas
-  # GET /ideas.json
   def index
     @ideas = Idea.order(:cached_votes_total => :desc)
+    @categories = Category.all
   end
 
-  # GET /ideas/1
-  # GET /ideas/1.json
   def show
       @category = Category.find(@idea.category_id)
       @project_owner = User.find(@idea.project_owner_id)
       @post = Post.new
+      @posts = Post.where(idea_id: @idea.id).order('created_at DESC').paginate(:page => params[:page], :per_page => 5)
   end
 
-  # GET /ideas/new
   def new
     @idea = Idea.new
   end
@@ -73,6 +70,11 @@ class IdeasController < ApplicationController
     @idea.liked_by current_user
    redirect_to :back
   end 
+  
+  def removevote
+    @idea.unliked_by current_user
+    redirect_to :back
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

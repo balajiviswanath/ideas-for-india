@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def title(page_title)
+    content_for :title, page_title.to_s
+  end
+  
    #taken from: http://stackoverflow.com/questions/5909121/converting-a-regular-youtube-link-into-an-embedded-video
     def youtube_embed(youtube_url,w,h)
       if youtube_url[/youtu\.be\/([^\?]*)/]

@@ -1,19 +1,2 @@
-<div class="well">
-  <div id="mentionable-data" data-content=""></div>
-  <%= form_for(@post) do |f| %>
-    <div class="form-group">
-      <h4>What is going on with your project?</h4>
-      <div id="post-content" contenteditable="true" class="editable form-control input-mentionable" placeholder="Building a shuttle to the moon..."></div>
-      <%= f.hidden_field :content, class: 'form-control input-mentionable', autofocus: true %>
-    </div>
-    <div id="img-preview" class="form-group hidden">
-      <img src="" alt="Preview">
-    </div>
-    <div class="form-group hidden">
-      <%= f.file_field :attachment %>
-    </div>
-    <div class="form-group">
-      <%= f.submit 'Post', class: 'btn btn-primary'%>
-    </div>
-  <% end %>
-</div>
+
+

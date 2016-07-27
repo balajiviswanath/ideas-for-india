@@ -1,11 +1,17 @@
 <span id="notice"><%= notice %></span>
-
+<% title "Browse through India's best ideas" %>
 <h1>Browse through India's best Ideas</h1>
-<% @ideas.each do |idea| %>
-    <h3><%= link_to idea.title, controller: "ideas", action: "show", id: idea.id %></h3>
-    <div id="test">
-        Test 233
-    </div>
-   <%= raw(youtube_embed( idea.video_url,400,300)) %> 
-    <br>
+Select specific categories to filter:
+  <% @categories.each do |category| %>
+     <%= link_to category.name, controller: "categories", action: "show", id: category, class: "btn btn-primary" %>
+  <% end %>
+<% @ideas.each_slice(3) do |ideas| %>
+  <div class="row">
+    <% ideas.each do |idea| %>
+      <div class="col-md-4">
+         <h3><%= link_to idea.title, controller: "ideas", action: "show", id: idea.id %></h3> 
+         <%= raw(youtube_embed( idea.video_url,350,200)) %> 
+      </div>
+    <% end %>
+  </div>
 <% end %>
