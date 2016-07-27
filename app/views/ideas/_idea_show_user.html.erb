@@ -1,0 +1,54 @@
+ <h1><%= @idea.title %></h1>
+
+<div class="row">
+  <div class = "col-lg-7">
+    <%= raw(youtube_embed( @idea.video_url, 650, 400)) %>
+  </div>
+  <div class = "col-lg-5">
+      Project Owner: <%=  link_to @project_owner.name, controller: "users", action: "show", id: @project_owner %>
+     <br> Category: <%= link_to @category.name, controller: "categories", action: "show", id: @category %>
+     
+     <% if current_user %>
+        <% if current_user.voted_for? @idea %>
+          <%= link_to unsupport_idea_path(@idea), method: :put do %>
+          <%=  fa_icon 'thumbs-down' %> unsupport
+        <% end %>
+        <% else %>
+          <%= link_to support_idea_path(@idea), method: :put do %>
+          <%=  fa_icon 'thumbs-up' %> support
+        <% end %>
+      <% end %>
+    <% end %>
+     <br>Supports for this idea: <%= @idea.get_upvotes.size %>
+     <br><h4>Description of the idea</h4>
+       <%= @idea.description %>
+  </div>
+</div>
+<div class="row">
+  <div id="ideafeed" class="col-lg-8 col-lg-offset-2 well">
+    <div id="mentionable-data" data-content=""></div>
+    <%= form_for(@post) do |f| %>
+      <div class="form-group">
+        <h4>Comment on this idea and offer assistance.</h4>
+          <%= f.text_area :content, class: 'form-control input-mentionable', placeholder: "Building a shuttle to the moon..." %>
+          <%= f.hidden_field :idea_id, :value => @idea.id%>
+      </div>
+
+      <div class="form-group">
+        <%= f.submit 'Post', class: 'btn btn-primary'%>
+      </div>
+    <% end %>
+    
+    <div id="endless-scroll" class="well">
+      <%= 
+      #image_tag 'ajax-loader.gif'
+      %>
+       <%= will_paginate @posts %>
+       <% @posts.each do |userpost| %>
+          <p><%= userpost.content %></p>
+          <p>Posted: <%= time_ago_in_words(userpost.created_at) %> ago</p>
+          <p>Posted by  <%=  link_to User.find(userpost.user_id).name, controller: "users", action: "show", id: userpost.user_id%></p>
+    <% end %>
+    </div>
+  </div>
+</div>

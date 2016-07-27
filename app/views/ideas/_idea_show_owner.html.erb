@@ -1,0 +1,38 @@
+ <h1>My big idea: <%= @idea.title %></h1>
+
+<div class="row">
+  <div class="col-lg-4">
+    Project Owner: <%=  link_to @project_owner.name, controller: "users", action: "show", id: @project_owner %>
+  <br> Category: <%= link_to @category.name, controller: "categories", action: "show", id: @category %>
+  <br><br> <%= @idea.description %>
+  <p> <%= raw(youtube_embed( @idea.video_url, 350, 200)) %> </p>
+  <%= link_to "Edit this idea", edit_idea_path, class: "btn btn-primary btn-large" %>
+
+  </div>
+  <div id="ideafeed" class="col-lg-8">
+    <div id="mentionable-data" data-content=""></div>
+    <%= form_for(@post) do |f| %>
+      <div class="form-group">
+        <h4>What is going on with your project?</h4>
+          <%= f.text_area :content, class: 'form-control input-mentionable', autofocus: true, placeholder: "Building a shuttle to the moon..." %>
+          <%= f.hidden_field :idea_id, :value => @idea.id%>
+      </div>
+
+      <div class="form-group">
+        <%= f.submit 'Post', class: 'btn btn-primary'%>
+      </div>
+    <% end %>
+    
+    <div id="endless-scroll" class="well">
+      <%= 
+      #image_tag 'ajax-loader.gif'
+      %>
+       <%= will_paginate @posts %>
+       <% @posts.each do |userpost| %>
+          <p><%= userpost.content %></p>
+          <p>Posted: <%= time_ago_in_words(userpost.created_at) %> ago</p>
+          <p>Posted by  <%=  link_to User.find(userpost.user_id).name, controller: "users", action: "show", id: userpost.user_id%></p>
+    <% end %>
+    </div>
+  </div>
+</div>
