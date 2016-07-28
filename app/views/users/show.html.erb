@@ -3,12 +3,16 @@
 <%= 
 #image_tag(@user.avatar.url) 
 %>
-<%= @user.about %>
+Bio: <%= @user.about %>
+<br>From: <%= @institute.name %><br>
 <% if current_user == @user %>
     <%=link_to "Edit my profile", edit_user_registration_path %>
 <% end %>
 <br>
-<h2>Ideas working on</h2>
+<h4>Ideas working on</h4>
+<% if @ideas.count < 1 %>
+  Not added any ideas yet.
+<% end %>
 <% @ideas.each_slice(3) do |ideas| %>
   <div class="row">
     <% ideas.each do |idea| %>
@@ -20,7 +24,10 @@
   </div>
 <% end %>
 
-<h2>Ideas commented on</h2>
+<h4>Ideas commented on</h4>
+<% if @ideas_comment.count < 1 %>
+  Not commented on anything yet.
+<% end %>
 <% @ideas_comment.each_slice(3) do |ideas| %>
   <div class="row">
     <% ideas.each do |key,idea| %>

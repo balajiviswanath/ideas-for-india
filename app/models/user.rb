@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :ideas
   has_many :posts
   acts_as_voter
+  belongs_to :institute
   
   mount_uploader :avatar, AvatarUploader
   
@@ -20,6 +21,6 @@ class User < ActiveRecord::Base
       errors[:avatar] << "should be less than 500KB" if avatar.size > 0.5.megabytes
     end
   
-  validates :name, :email, :about, :presence =>true  
+  validates :name, :email, :about, :institute_id, :presence =>true  
     
 end
