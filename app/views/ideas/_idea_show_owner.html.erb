@@ -23,16 +23,6 @@
       </div>
     <% end %>
     
-    <div id="endless-scroll" class="well">
-      <%= 
-      #image_tag 'ajax-loader.gif'
-      %>
-       <%= will_paginate @posts %>
-       <% @posts.each do |userpost| %>
-          <p><%= userpost.content %></p>
-          <p>Posted: <%= time_ago_in_words(userpost.created_at) %> ago</p>
-          <p>Posted by  <%=  link_to User.find(userpost.user_id).name, controller: "users", action: "show", id: userpost.user_id%></p>
-    <% end %>
-    </div>
+   <%= render "idea_comments" %>
   </div>
 </div>

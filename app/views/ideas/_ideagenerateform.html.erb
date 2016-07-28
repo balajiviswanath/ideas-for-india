@@ -13,11 +13,18 @@
 
   <div class="field">
     <%= f.label :title %><br>
-    <%= f.text_field :title, class: 'form-control', placeholder: 'provide an interesting name' %>
+      <div class="input-group">
+           <span class="input-group-addon input-circle-left"> <i class="fa fa-envelope"></i> </span>
+           <%= f.text_field :title, class: 'form-control input-circle-right"', placeholder: 'provide an interesting name' %>
+      </div>
   </div>
   <div class="field">
     <%= f.label :description %><br>
-    <%= f.text_area :description, class: 'form-control', placeholder: 'what have you built or building?' %>
+     <div class="input-group">
+           <span class="input-group-addon input-circle-left"> <i class="fa fa-user"></i> </span>
+           <%= f.text_field :title, class: 'form-control input-circle-right"', placeholder: 'what have you built or building?' %>
+      </div>
+  
   </div>
   <div class="field">
     <%= f.label :video_url %><br>
